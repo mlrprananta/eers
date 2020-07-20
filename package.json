@@ -9,7 +9,10 @@
   },
   "scripts": {
     "build": "cd client && yarn build",
-    "start": "yarn build && nodemon app.js",
+    "serve": "yarn build && nodemon ./bin/www",
+    "start-client": "cd client && yarn start",
+    "start-server": "nodemon ./bin/www",
+    "storybook": "cd client && yarn storybook",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
