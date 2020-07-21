@@ -7,12 +7,12 @@ import { Default } from "./pages/Default";
 
 const App = () => (
   <Router>
-    <Switch>
-      <div className="App">
+    <div className="App">
+      <Switch>
         <Route path="/login" children={Login} />
         <Route children={Default} />
-      </div>
-    </Switch>
+      </Switch>
+    </div>
   </Router>
 );
 
