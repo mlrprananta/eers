@@ -1,13 +1,19 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { TopNavbar } from './atoms/Navbar';
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-function App() {
-  return (
-    <div className="App">
-      <TopNavbar></TopNavbar>
-    </div>
-  );
-}
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Login } from "./pages/Login";
+import { Default } from "./pages/Default";
+
+const App = () => (
+  <Router>
+    <Switch>
+      <div className="App">
+        <Route path="/login" children={Login} />
+        <Route children={Default} />
+      </div>
+    </Switch>
+  </Router>
+);
 
 export default App;

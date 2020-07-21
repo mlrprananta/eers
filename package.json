@@ -19,5 +19,10 @@
   "author": "",
   "license": "ISC",
   "private": true,
-  "workspaces": ["client"]
+  "workspaces": [
+    "client"
+  ],
+  "devDependencies": {
+    "prettier": "2.0.5"
+  }
 }
