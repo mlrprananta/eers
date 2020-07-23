@@ -1,30 +1,30 @@
 {
-  "name": "eers",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "nodemon": "^2.0.4"
-  },
-  "scripts": {
-    "build": "cd client && yarn build",
-    "serve": "yarn build && nodemon ./bin/www",
-    "start-client": "cd client && yarn start",
-    "start-server": "nodemon ./bin/www",
-    "storybook": "cd client && yarn storybook",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "private": true,
-  "workspaces": [
-    "client"
-  ],
-  "devDependencies": {
-    "prettier": "2.0.5"
-  }
+    "name": "eers",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "nodemon": "^2.0.4"
+    },
+    "scripts": {
+        "build": "cd client && yarn build",
+        "serve": "yarn build && nodemon ./bin/www",
+        "start-client": "cd client && yarn start",
+        "start-server": "nodemon ./bin/www",
+        "storybook": "cd client && yarn storybook",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "private": true,
+    "workspaces": [
+        "client"
+    ],
+    "devDependencies": {
+        "prettier": "2.0.5"
+    }
 }

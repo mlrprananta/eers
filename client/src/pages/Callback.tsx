@@ -1,4 +1,14 @@
-import React from "react";
-import { Container } from "react-bootstrap";
+import React from 'react'
+import axios from 'axios'
 
-export const Callback: React.FC = () => <Container></Container>;
+import { Container } from 'react-bootstrap'
+
+export const Callback: React.FC = () => {
+    const [isLoggedIn, setLoggedIn] = useState(false)
+
+    return (
+        <Container>
+            <h1>Callback</h1>
+        </Container>
+    )
+}
