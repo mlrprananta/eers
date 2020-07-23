@@ -1,12 +1,25 @@
-var express = require('express');
-var path = require('path');
-var router = express.Router();
+const express = require("express");
+const path = require("path");
+const router = express.Router();
+const cors = require("cors");
+const querystring = require("querystring");
 
-router.get('/login', (req, res) => {
-    var scopes = 'user-read-private user-read-email';
-    res.redirect('https://accounts.spotify.com/authorize' +
-      '?response_type=code' +
-      '&client_id=' + my_client_id +
-      (scopes ? '&scope=' + encodeURIComponent(scopes) : '') +
-      '&redirect_uri=' + encodeURIComponent(redirect_uri));
-    });
+const AUTHORIZE_URI = "https://accounts.spotify.com/authorize?";
+
+//TODO Use state
+router.get("/", cors(), (req, res) => {
+  const scope = "user-read-private user-read-email user-top-read";
+  console.log("GET");
+  res.redirect(
+    AUTHORIZE_URI +
+      querystring.stringify({
+        client_id: process.env.CLIENT_ID,
+        response_type: "code",
+        redirect_uri: process.env.REDIRECT_URI,
+        scope: scope,
+        state: "xyz",
+      })
+  );
+});
+
+module.exports = router;
