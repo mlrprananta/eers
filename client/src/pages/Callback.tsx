@@ -18,7 +18,7 @@ export const Callback: React.FC = (props) => {
         }
       })
     }
-  }, [])
+  }, [isLoggedIn])
 
   return <Fragment>{isLoggedIn ? <Redirect to="/home" /> : null}</Fragment>
 }
