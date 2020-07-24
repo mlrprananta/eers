@@ -24,7 +24,8 @@ code {
 }
 
 .truncate {
-  width: 150px;
+  display: inline-block;
+  width: 170px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

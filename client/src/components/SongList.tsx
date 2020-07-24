@@ -15,6 +15,7 @@ export const SongList: React.FC = () => {
     axios
       .get(API_URI, {
         params: {
+          limit: 50,
           time_range: 'short_term',
         },
         headers: {
@@ -38,9 +39,10 @@ export const SongList: React.FC = () => {
           const track = item.name
           return (
             <div>
-              <Image src={image} width="150px" height="150px" />
-              <h6 className="truncate">{track}</h6>
-              <span>{artist}</span>
+              <Image src={image} width="200px" height="150px" thumbnail />
+              <span className="truncate">{track}</span>
+              <br />
+              <span className="font-weight-light">{artist}</span>
             </div>
           )
         })}
