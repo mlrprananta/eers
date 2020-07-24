@@ -40,8 +40,8 @@ export const ArtistList: React.FC = () => {
           const artist = item.name
           return (
             <div key={item.id}>
-              <Image src={image} width="150px" height="150px" roundedCircle />
-              <span className="font-weight- truncate">{artist}</span>
+              <Image src={image} fluid roundedCircle />
+              <p className="text-center font-weight-light">{artist}</p>
             </div>
           )
         })}

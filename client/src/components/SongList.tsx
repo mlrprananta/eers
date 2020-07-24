@@ -39,8 +39,8 @@ export const SongList: React.FC = () => {
           const track = item.name
           return (
             <div key={item.id}>
-              <Image src={image} width="200px" height="150px" thumbnail />
-              <span className="font-weight- truncate">{track}</span>
+              <Image src={image} thumbnail />
+              <span className="font-weight-normal truncate">{track}</span>
               <br />
               <span className="font-weight-light">{artist}</span>
             </div>
