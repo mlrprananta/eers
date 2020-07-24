@@ -1,14 +1,24 @@
-import React from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import axios from 'axios'
 
-import { Container } from 'react-bootstrap'
+import { useLocation, Redirect } from 'react-router-dom'
+import useAuth from '../hooks/useAuth'
 
-export const Callback: React.FC = () => {
-    const [isLoggedIn, setLoggedIn] = useState(false)
+export const Callback: React.FC = (props) => {
+  const [isLoggedIn, setLoggedIn] = useState(false)
+  const location = useLocation()
+  const { token, setToken } = useAuth()
 
-    return (
-        <Container>
-            <h1>Callback</h1>
-        </Container>
-    )
+  useEffect(() => {
+    if (!isLoggedIn) {
+      axios.get(`/api/callback${location.search}`).then((res) => {
+        if (res.status === 200) {
+          setToken(res.data)
+          setLoggedIn(true)
+        }
+      })
+    }
+  }, [])
+
+  return <Fragment>{isLoggedIn ? <Redirect to="/" /> : null}</Fragment>
 }

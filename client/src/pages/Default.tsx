@@ -5,12 +5,12 @@ import { Profile } from './Profile'
 import { Home } from './Home'
 
 export const Default: React.FC = () => (
-    <Fragment>
-        <Navbar />
-        <Switch>
-            <Route path="/home" children={Home} />
-            <Route path="/profile" children={Profile} />
-            <Route path="/user/:id" children={Profile} />
-        </Switch>
-    </Fragment>
+  <Fragment>
+    <Navbar />
+    <Switch>
+      <Route path="/home" component={Home} />
+      <Route path="/profile" component={Profile} />
+      <Route path="/user/:id" children={Profile} />
+    </Switch>
+  </Fragment>
 )

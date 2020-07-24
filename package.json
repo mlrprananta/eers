@@ -4,6 +4,7 @@
     "description": "",
     "main": "app.js",
     "dependencies": {
+        "axios": "^0.19.2",
         "cors": "^2.8.5",
         "dotenv": "^8.2.0",
         "express": "^4.17.1",
@@ -11,9 +12,10 @@
     },
     "scripts": {
         "build": "cd client && yarn build",
-        "serve": "yarn build && nodemon ./bin/www",
         "start-client": "cd client && yarn start",
         "start-server": "nodemon ./bin/www",
+        "serve": "yarn build && yarn start-server",
+        "start": "yarn start-client && yarn start-server",
         "storybook": "cd client && yarn storybook",
         "test": "echo \"Error: no test specified\" && exit 1"
     },

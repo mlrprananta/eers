@@ -1,8 +1,15 @@
 import React from 'react'
 
-const AuthContext = React.createContext({
-    token: {},
-    setToken: (token: JSON) => {},
-})
+export type Token = {
+  access_token: string
+  refresh_token: string
+}
+
+interface IAuthContextProps {
+  token: Token
+  setToken: (token: JSON) => void
+}
+
+const AuthContext = React.createContext({} as IAuthContextProps)
 
 export default AuthContext

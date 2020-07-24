@@ -17,6 +17,7 @@ router.get('/', (req, res) => {
                 response_type: 'code',
                 redirect_uri: process.env.REDIRECT_URI,
                 scope: scope,
+                show_dialog: true,
             }),
     )
 })

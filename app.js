@@ -11,6 +11,7 @@ app.use(express.static(dist))
 app.use(express.json())
 app.use(cors())
 app.use('/api/authenticate', require('./components/authenticate'))
+app.use('/api/callback', require('./components/callback'))
 app.use('/*', router)
 
 module.exports = app

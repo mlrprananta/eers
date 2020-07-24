@@ -1,6 +1,7 @@
 import React from 'react'
+import axios from 'axios'
 
 export const UserContext = React.createContext({
-    user: {},
-    setToken: (token: JSON) => {},
+  user: {},
+  setUser: (token: JSON) => {},
 })
