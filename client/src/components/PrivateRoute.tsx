@@ -1,17 +1,17 @@
 import React from 'react'
 import { Route, Redirect, RouteProps } from 'react-router-dom'
-import useAuth from '../hooks/useAuth'
+import { useAuthState } from '../context/AuthContext'
 
 const PrivateRoute: React.FC<RouteProps> = ({
   component: Component,
   ...rest
 }) => {
-  const isAuthenticated = useAuth().token
+  const state = useAuthState()
   return (
     <Route
       {...rest}
       render={(props) =>
-        isAuthenticated ? (
+        state.authenticated ? (
           Component ? (
             <Component {...props} />
           ) : null

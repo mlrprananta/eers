@@ -1,26 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Container } from 'react-bootstrap'
-import useAuth from '../hooks/useAuth'
 import { SongList } from '../components/SongList'
+import { User } from '../data/types'
+import { useApiRequest } from '../hooks/useSpotifyWebApi'
 import { ArtistList } from '../components/ArtistList'
 
 export const Home: React.FC = () => {
-  const [userName, setUsername] = useState('')
-  const { token } = useAuth()
-
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user')
-    if (storedUser) {
-      const user = JSON.parse(storedUser)
-      if ('display_name' in user) {
-        setUsername(user.display_name)
-      }
-    }
-  }, [token])
+  const user = useApiRequest<User>('/me')
 
   return (
     <Container fluid>
-      <h1>{'Welcome ' + userName}</h1>
+      <h1>{'Welcome ' + (user ? user.display_name : '')}</h1>
       <ArtistList></ArtistList>
       <SongList></SongList>
     </Container>

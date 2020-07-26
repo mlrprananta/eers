@@ -10,8 +10,8 @@ const dist = path.join(__dirname, 'client', 'build')
 app.use(express.static(dist))
 app.use(express.json())
 app.use(cors())
-app.use('/api/authenticate', require('./components/authenticate'))
-app.use('/api/callback', require('./components/callback'))
+app.use('/api/authorize', require('./components/authorize'))
+app.use('/api/token', require('./components/token'))
 app.use('/*', router)
 
 module.exports = app

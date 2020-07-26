@@ -1,14 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Container, Card, Button } from 'react-bootstrap'
 import axios from 'axios'
-import useAuth from '../hooks/useAuth'
 
 export const Login: React.FC = () => {
-  const { setToken } = useAuth()
-
   const authenticate = () => {
     axios
-      .get('/api/authenticate')
+      .get('/api/authorize')
       .then((res) => {
         window.location = res.data
       })
@@ -18,7 +15,7 @@ export const Login: React.FC = () => {
   }
 
   return (
-    <Container className="parent">
+    <Container fluid className="parent">
       <h1>{'E&ERS'}</h1>
       <Card className="text-center" style={{ width: '18rem' }}>
         <Card.Body>

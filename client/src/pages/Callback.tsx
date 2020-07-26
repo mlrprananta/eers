@@ -1,24 +1,32 @@
-import React, { useState, useEffect, Fragment } from 'react'
-import axios from 'axios'
+import React, { useEffect, Fragment } from 'react'
+import * as service from '../api/tokenService'
 
-import { useLocation, Redirect } from 'react-router-dom'
-import useAuth from '../hooks/useAuth'
+import { useLocation, Redirect, useHistory } from 'react-router-dom'
+import { useAuthDispatch, useAuthState } from '../context/AuthContext'
 
 export const Callback: React.FC = (props) => {
-  const [isLoggedIn, setLoggedIn] = useState(false)
   const location = useLocation()
-  const { token, setToken } = useAuth()
+  const history = useHistory()
+
+  const state = useAuthState()
+  const dispatch = useAuthDispatch()
+  // const { setToken } = useAuth()
 
   useEffect(() => {
-    if (!isLoggedIn) {
-      axios.get(`/api/callback${location.search}`).then((res) => {
-        if (res.status === 200) {
-          setToken(res.data)
-          setLoggedIn(true)
-        }
+    service
+      .fetchTokens(location.search)
+      .then((token) => {
+        dispatch({ type: 'AUTHENTICATE', payload: token })
       })
-    }
-  }, [isLoggedIn])
+      .catch((error) => {
+        history.push('/login')
+        console.error(error)
+        service.clearTokens()
+        dispatch({ type: 'RESET' })
+      })
+  })
 
-  return <Fragment>{isLoggedIn ? <Redirect to="/home" /> : null}</Fragment>
+  return (
+    <Fragment>{state.authenticated ? <Redirect to="/home" /> : null}</Fragment>
+  )
 }

@@ -8,7 +8,7 @@ const AUTHORIZE_URI = 'https://accounts.spotify.com/authorize?'
 
 //TODO Use state
 router.get('/', (req, res) => {
-    const scope = 'user-read-private user-read-email user-top-read'
+    const scope = 'user-top-read user-read-recently-played'
     console.log('GET')
     res.send(
         AUTHORIZE_URI +
