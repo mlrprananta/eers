@@ -1,26 +1,32 @@
 {
-  "name": "eers",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "dependencies": {
-    "express": "^4.17.1",
-    "nodemon": "^2.0.4"
-  },
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^3.7.0",
-    "@typescript-eslint/parser": "^3.7.0",
-    "eslint": "^7.5.0",
-    "eslint-plugin-react": "^7.20.3"
-  },
-  "scripts": {
-    "build": "cd client && yarn build",
-    "start": "yarn build && nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "private": true,
-  "workspaces": ["client"]
+    "name": "eers",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "dependencies": {
+        "axios": "^0.19.2",
+        "cors": "^2.8.5",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "nodemon": "^2.0.4"
+    },
+    "scripts": {
+        "build": "cd client && yarn build",
+        "start-client": "cd client && yarn start",
+        "start-server": "nodemon ./bin/www",
+        "serve": "yarn build && yarn start-server",
+        "start": "yarn start-client && yarn start-server",
+        "storybook": "cd client && yarn storybook",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "private": true,
+    "workspaces": [
+        "client"
+    ],
+    "devDependencies": {
+        "prettier": "2.0.5"
+    }
 }
