@@ -58,8 +58,6 @@ const AuthProvider: React.FC = (props) => {
   })
 
   useEffect(() => {
-    console.log('Effect called ')
-    console.log(state)
     const callback = async () => {
       if (state.expired && !fetching) {
         setFetching(true)
