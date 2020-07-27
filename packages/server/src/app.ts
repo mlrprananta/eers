@@ -1,18 +1,22 @@
-const express = require('express')
-const path = require('path')
-const cors = require('cors')
-const router = require('./components/index')
-const app = express()
+import express from 'express'
+import path from 'path'
+import cors from 'cors'
+import dotenv from 'dotenv'
 
-require('dotenv').config()
+import router from './components/index'
+import authorize from './components/authorize'
+import token from './components/token'
+
+const app = express()
+dotenv.config()
 
 const dist = path.join(__dirname, '..', '..', 'client', 'build')
 
 app.use(express.static(dist))
 app.use(express.json())
 app.use(cors())
-app.use('/api/authorize', require('./components/authorize'))
-app.use('/api/token', require('./components/token'))
+app.use('/api/authorize', authorize)
+app.use('/api/token', token)
 app.use('/*', router)
 
 export default app

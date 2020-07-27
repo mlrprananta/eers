@@ -1,5 +1,5 @@
 import express from 'express'
-const axios = require('axios')
+import axios from 'axios'
 const router = express.Router()
 
 const TOKEN_URI = 'https://accounts.spotify.com/api/token'
@@ -61,4 +61,4 @@ router.post('/', (req, res) => {
         })
 })
 
-module.exports = router
+export default router

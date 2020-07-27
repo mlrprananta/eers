@@ -1,6 +1,7 @@
 import express from 'express'
+import querystring from 'querystring'
+
 const router = express.Router()
-const querystring = require('querystring')
 
 const AUTHORIZE_URI = 'https://accounts.spotify.com/authorize?'
 
@@ -20,4 +21,4 @@ router.get('/', (req, res) => {
     )
 })
 
-module.exports = router
+export default router
