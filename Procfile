@@ -1,1 +1,1 @@
-web: node ./bin/www
+web: node packages/server/dist/server.js

@@ -1,7 +1,5 @@
-const express = require('express')
-const path = require('path')
+import express from 'express'
 const router = express.Router()
-const cors = require('cors')
 const querystring = require('querystring')
 
 const AUTHORIZE_URI = 'https://accounts.spotify.com/authorize?'
