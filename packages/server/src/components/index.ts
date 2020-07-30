@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { Response } from 'express'
 import path from 'path'
 
 const router = express.Router()
@@ -7,7 +7,7 @@ const dist = path.join(__dirname, '..', '..', '..', 'client', 'build')
 
 console.log(dist)
 
-router.get('/', function (req, res, next) {
+router.get('/', (_, res: Response) => {
     res.sendFile(path.join(dist, 'index.html'))
 })
 

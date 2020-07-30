@@ -6,6 +6,7 @@
     "start": "lerna run start",
     "build": "lerna run build",
     "serve": "lerna run serve",
+    "dev": "lerna run dev",
     "storybook": "lerna run storybook",
     "start:client": "yarn workspace @eers/client start",
     "start:server": "yarn workspace server start",
