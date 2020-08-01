@@ -4,6 +4,8 @@ import { SongList } from '../components/SongList'
 import { User } from '../data/types'
 import { useApiRequest } from '../hooks/useSpotifyWebApi'
 import { ArtistList } from '../components/ArtistList'
+import { SongTable } from '../components/table/SongTable'
+import { Endpoint } from '../api/endpoints'
 
 export const Home: React.FC = () => {
   const user = useApiRequest<User>('/me')
@@ -12,7 +14,15 @@ export const Home: React.FC = () => {
     <Container fluid>
       <h1>{'Welcome ' + (user ? user.display_name : '')}</h1>
       <ArtistList></ArtistList>
-      <SongList></SongList>
+      <h2>Your recent tracks</h2>
+      <SongTable
+        endpoint={Endpoint.TopTracks}
+        options={{
+          limit: 50,
+          time_range: 'short_term',
+        }}
+      />
+      {/* <SongList></SongList> */}
     </Container>
   )
 }

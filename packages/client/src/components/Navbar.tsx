@@ -16,8 +16,8 @@ export const MyNavbar: React.FC = (props) => {
           <Nav.Link as={Link} to="home">
             Home
           </Nav.Link>
-          <Nav.Link as={Link} to="profile">
-            Profile
+          <Nav.Link as={Link} to="tracks">
+            Tracks
           </Nav.Link>
         </Nav>
         <Nav className="ml-auto">

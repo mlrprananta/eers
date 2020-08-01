@@ -5,8 +5,6 @@ const router = express.Router()
 
 const dist = path.join(__dirname, '..', '..', '..', 'client', 'build')
 
-console.log(dist)
-
 router.get('/', (_, res: Response) => {
     res.sendFile(path.join(dist, 'index.html'))
 })
