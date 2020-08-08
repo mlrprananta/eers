@@ -1,28 +1,14 @@
 import React from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css'
-
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { Login } from './pages/Login'
-import { Default } from './pages/Default'
-import PrivateRoute from './components/PrivateRoute'
-import { Callback } from './pages/Callback'
 import AuthProvider from './context/AuthContext'
+import { Routes } from './components/Routes'
 
 const App = () => {
   return (
-    <Router>
+    <div className="App">
       <AuthProvider>
-        <div className="App">
-          <Switch>
-            <Route path="/login" component={Login} />
-            <Route path="/callback" component={Callback} />
-            {/* <ClientProvider> */}
-            <PrivateRoute component={Default} />
-            {/* </ClientProvider> */}
-          </Switch>
-        </div>
+        <Routes />
       </AuthProvider>
-    </Router>
+    </div>
   )
 }
 

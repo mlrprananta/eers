@@ -20,8 +20,8 @@ export const SongTable: React.FC<Props> = (props) => {
   return (
     <GenericTable>
       <Body>
-        {tracks.items.map((track) => (
-          <Row>
+        {tracks.items.map((track, index) => (
+          <Row key={track.name + index}>
             <AlbumArtColumn track={track} />
             <Column data={track} dataKey={'name'} />
             <ArtistColumn data={track}></ArtistColumn>

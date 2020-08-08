@@ -1,31 +1,25 @@
-import React, { useEffect, Fragment } from 'react'
+import React, { useEffect } from 'react'
 
-import { useLocation, Redirect, useHistory } from 'react-router-dom'
-import { useAuthDispatch, useAuthState } from '../context/AuthContext'
-import { fetchTokens, clearTokens } from '../api/tokenService'
+import { Redirect } from 'react-router-dom'
+import { useAuthState } from '../context/AuthContext'
+import { useAuth } from '../hooks/useAuth'
+import { Spinner } from 'react-bootstrap'
 
 export const Callback: React.FC = (props) => {
-  const location = useLocation()
-  const params = location.search
-  const history = useHistory()
-
+  const { login } = useAuth()
   const state = useAuthState()
-  const dispatch = useAuthDispatch()
 
   useEffect(() => {
-    fetchTokens(params)
-      .then((token) => {
-        dispatch({ type: 'AUTHENTICATE', payload: token })
-      })
-      .catch((error) => {
-        history.push('/login')
-        console.error(error)
-        clearTokens()
-        dispatch({ type: 'RESET' })
-      })
-  }, [dispatch, history, params])
+    login()
+  }, [login])
 
   return (
-    <Fragment>{state.authenticated ? <Redirect to="/home" /> : null}</Fragment>
+    <div className="parent full">
+      {state.authenticated ? (
+        <Redirect to="/home" />
+      ) : (
+        <Spinner animation="border" variant="primary" />
+      )}
+    </div>
   )
 }

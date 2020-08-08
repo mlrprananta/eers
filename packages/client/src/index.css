@@ -12,6 +12,20 @@ code {
     monospace;
 }
 
+html,
+body {
+  height: 100%;
+}
+
+#root,
+#root > div {
+  height: 100vh;
+}
+
+.full {
+  height: 100vh;
+}
+
 .parent {
   display: grid;
   place-items: center;

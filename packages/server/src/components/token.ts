@@ -1,10 +1,14 @@
-import express from 'express'
-import axios from 'axios'
+import express, { response } from 'express'
+import axios, { AxiosError } from 'axios'
+
 const router = express.Router()
 
 const TOKEN_URI = 'https://accounts.spotify.com/api/token'
 
 //TODO Use state
+/**
+ * Authorization route
+ */
 router.get('/', (req, res) => {
     axios({
         method: 'post',
@@ -23,24 +27,35 @@ router.get('/', (req, res) => {
         },
     })
         .then((response) => {
+            res.cookie('vt', response.data.refresh_token, {
+                httpOnly: true,
+                path: '/api/token',
+            })
             res.json({
                 access_token: response.data.access_token,
-                refresh_token: response.data.refresh_token,
             })
         })
-        .catch((error) => {
-            console.error(error.message)
+        .catch((error: AxiosError) => {
+            res.status(error.response.status).send(error.response.data)
         })
 })
 
+/**
+ * Refresh route
+ */
 router.post('/', (req, res) => {
-    console.log(req.body)
+    const token = req.cookies.vt
+
+    if (!token) {
+        res.status(400).send('Invalid refresh token')
+    }
+
     axios({
         method: 'post',
         url: TOKEN_URI,
         params: {
             grant_type: 'refresh_token',
-            refresh_token: req.body.refresh_token,
+            refresh_token: token,
         },
         headers: {
             Authorization:
@@ -55,9 +70,8 @@ router.post('/', (req, res) => {
                 access_token: response.data.access_token,
             })
         })
-        .catch((error) => {
-            res.status(error.response.status)
-            console.error(error.response)
+        .catch((error: AxiosError) => {
+            res.status(error.response.status).send(error.response.data)
         })
 })
 

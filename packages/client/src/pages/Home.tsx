@@ -1,6 +1,5 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
-import { SongList } from '../components/SongList'
 import { User } from '../data/types'
 import { useApiRequest } from '../hooks/useSpotifyWebApi'
 import { ArtistList } from '../components/ArtistList'
@@ -13,6 +12,7 @@ export const Home: React.FC = () => {
   return (
     <Container fluid>
       <h1>{'Welcome ' + (user ? user.display_name : '')}</h1>
+      <h2>Your favorite artists</h2>
       <ArtistList></ArtistList>
       <h2>Your recent tracks</h2>
       <SongTable
@@ -22,7 +22,6 @@ export const Home: React.FC = () => {
           time_range: 'short_term',
         }}
       />
-      {/* <SongList></SongList> */}
     </Container>
   )
 }

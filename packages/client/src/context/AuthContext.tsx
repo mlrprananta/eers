@@ -1,14 +1,8 @@
-import React, { useReducer, useEffect, useState } from 'react'
-import * as service from '../api/tokenService'
+import React, { useReducer } from 'react'
 
-type Action =
-  | { type: 'AUTHENTICATE'; payload: string }
-  | { type: 'EXPIRE' }
-  | { type: 'REFRESH'; payload: string }
-  | { type: 'RESET' }
+type Action = { type: 'AUTHENTICATE'; payload: string } | { type: 'RESET' }
 type Dispatch = (action: Action) => void
 type State = {
-  expired: boolean
   authenticated: boolean
   token: string
 }
@@ -20,63 +14,29 @@ const reducer = (state: State, action: Action) => {
   switch (action.type) {
     case 'AUTHENTICATE':
       return {
-        ...state,
         authenticated: true,
         token: action.payload,
       }
-    case 'EXPIRE':
-      return {
-        ...state,
-        expired: true,
-      }
-    case 'REFRESH':
-      return {
-        ...state,
-        expired: false,
-        // authenticated: true,
-        token: action.payload,
-      }
-
     case 'RESET':
       return {
-        ...state,
-        expired: false,
         authenticated: false,
+        token: '',
       }
     default:
-      throw new Error()
+      throw new Error('Invalid auth state')
   }
 }
 
 const AuthProvider: React.FC = (props) => {
-  const currentToken = service.getAccessToken()
-  const [fetching, setFetching] = useState(false)
+  // const [fetching, setFetching] = useState(false)
   const [state, dispatch] = useReducer(reducer, {
-    expired: false,
-    authenticated: currentToken !== null,
-    token: currentToken ? currentToken : '',
+    authenticated: false,
+    token: '',
   })
 
-  useEffect(() => {
-    const callback = async () => {
-      if (state.expired && !fetching) {
-        setFetching(true)
-        service
-          .refresh()
-          .then((token) => {
-            dispatch({ type: 'REFRESH', payload: token })
-            setFetching(false)
-          })
-          .catch((error) => {
-            console.error(error)
-            service.clearTokens()
-            setFetching(false)
-            dispatch({ type: 'RESET' })
-          })
-      }
-    }
-    callback()
-  }, [state, fetching])
+  // useEffect(() => {
+  //   console.log(state)
+  // }, [state])
 
   return (
     <AuthStateContext.Provider value={state}>

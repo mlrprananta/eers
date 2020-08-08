@@ -1,5 +1,4 @@
 import React, { PropsWithChildren, ReactElement } from 'react'
-import { Image } from 'react-bootstrap'
 import { Track } from '../../data/types'
 
 interface Props {
@@ -14,7 +13,7 @@ export function ArtistColumn(
   return (
     <td>
       {artists.map((artist, index) => (
-        <span>
+        <span key={artist.name + index}>
           {artist.name + (index !== props.data.artists.length - 1 ? ', ' : '')}
         </span>
       ))}

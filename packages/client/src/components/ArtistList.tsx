@@ -13,7 +13,6 @@ export const ArtistList: React.FC = () => {
 
   return (
     <Fragment>
-      <h3>Your favorite artists</h3>
       <div className="ram">
         {artists
           ? artists.map((item) => {

@@ -2,7 +2,6 @@ import React from 'react'
 import { Navbar, Nav, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useAuthDispatch } from '../context/AuthContext'
-import { clearTokens } from '../api/tokenService'
 
 export const MyNavbar: React.FC = (props) => {
   const dispatch = useAuthDispatch()
@@ -22,9 +21,8 @@ export const MyNavbar: React.FC = (props) => {
         </Nav>
         <Nav className="ml-auto">
           <Button
-            variant="danger"
+            variant="outline-primary"
             onClick={() => {
-              clearTokens()
               dispatch({ type: 'RESET' })
             }}
           >

@@ -12,22 +12,18 @@ export type Token = {
 //   return arg && 'access_token' in arg && 'refresh_token' in arg
 // }
 
-export async function fetchTokens(params: string) {
+export async function fetchToken(params: string) {
   return axios.get(`/api/token${params}`).then((response) => {
-    return setTokens(response.data.access_token, response.data.refresh_token)
+    return response.data.access_token
   })
 }
 
 // Refresh token
 export async function refresh() {
-  return axios
-    .post('/api/token', {
-      refresh_token: getRefreshToken(),
-    })
-    .then((response) => {
-      console.log(response.data)
-      return setAccessToken(response.data.access_token)
-    })
+  return axios.post('/api/token').then((response) => {
+    // console.log(response.data)
+    return response.data //setAccessToken(response.data.access_token)
+  })
 }
 
 export function setTokens(accessToken: string, refreshToken: string): string {
