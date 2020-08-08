@@ -1,10 +1,10 @@
 import React from 'react'
 import { Navbar, Nav, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { useAuthDispatch } from '../context/AuthContext'
+import { useAuth } from '../hooks/useAuth'
 
 export const MyNavbar: React.FC = (props) => {
-  const dispatch = useAuthDispatch()
+  const { logout } = useAuth()
 
   return (
     <Navbar>
@@ -20,12 +20,7 @@ export const MyNavbar: React.FC = (props) => {
           </Nav.Link>
         </Nav>
         <Nav className="ml-auto">
-          <Button
-            variant="outline-primary"
-            onClick={() => {
-              dispatch({ type: 'RESET' })
-            }}
-          >
+          <Button variant="outline-primary" onClick={() => logout()}>
             Logout
           </Button>
         </Nav>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import { useAuthState, useAuthDispatch } from '../context/AuthContext'
+import { useAuthState } from '../context/AuthContext'
 import axios, { AxiosError } from 'axios'
+import { useAuth } from './useAuth'
 
 const WEB_API_URI = 'https://api.spotify.com/v1'
 
@@ -13,7 +14,7 @@ export function useApiRequest<T>(url: string, options?: Options) {
   const [data, setData] = useState<T>()
   const [_options] = useState<Options>(options || {})
   const state = useAuthState()
-  const dispatch = useAuthDispatch()
+  const { clear } = useAuth()
 
   useEffect(() => {
     if (state.authenticated) {
@@ -33,13 +34,13 @@ export function useApiRequest<T>(url: string, options?: Options) {
             error.response.status >= 400 &&
             error.response.status <= 403
           ) {
-            dispatch({ type: 'RESET' })
+            clear()
           } else {
             throw error
           }
         })
     }
-  }, [dispatch, _options, state, url])
+  }, [clear, _options, state, url])
 
   return data
 }
