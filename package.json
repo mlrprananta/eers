@@ -1,32 +1,26 @@
 {
-    "name": "eers",
-    "version": "1.0.0",
-    "description": "",
-    "main": "app.js",
-    "dependencies": {
-        "axios": "^0.19.2",
-        "cors": "^2.8.5",
-        "dotenv": "^8.2.0",
-        "express": "^4.17.1",
-        "nodemon": "^2.0.4"
-    },
-    "scripts": {
-        "build": "cd client && yarn build",
-        "start-client": "cd client && yarn start",
-        "start-server": "nodemon ./bin/www",
-        "serve": "yarn build && yarn start-server",
-        "start": "yarn start-client && yarn start-server",
-        "storybook": "cd client && yarn storybook",
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "private": true,
-    "workspaces": [
-        "client"
-    ],
-    "devDependencies": {
-        "prettier": "2.0.5"
-    }
+  "name": "eers",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "lerna run start",
+    "build": "lerna run build",
+    "serve": "lerna run serve",
+    "dev": "lerna run dev",
+    "storybook": "lerna run storybook",
+    "start:client": "yarn workspace @eers/client start",
+    "start:server": "yarn workspace server start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "lerna": "^3.22.1",
+    "prettier": "2.0.5"
+  }
 }
