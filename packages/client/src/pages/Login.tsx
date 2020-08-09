@@ -12,7 +12,14 @@ export const Login: React.FC = () => {
         <p>Connect with Spotify and get started!</p>
         <p>
           <Button onClick={authenticate} variant="primary">
-            Connect with Spotify
+            <span>Connect with Spotify </span>
+            <img
+              src="/Spotify_Icon_CMYK_White.png"
+              height={22}
+              width={22}
+              alt="logo"
+              style={{ verticalAlign: 'text-bottom' }}
+            />
           </Button>
         </p>
       </Container>
