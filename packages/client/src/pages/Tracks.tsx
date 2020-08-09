@@ -3,19 +3,39 @@ import { Container, Tabs, Tab } from 'react-bootstrap'
 import { SongTable } from '../components/table/SongTable'
 import { Endpoint } from '../api/endpoints'
 
+const tabs = [
+  {
+    title: 'Monthly',
+    range: 'short',
+  },
+  {
+    title: 'Yearly',
+    range: 'medium',
+  },
+  {
+    title: 'All',
+    range: 'long',
+  },
+]
+
 export const Tracks: React.FC = () => {
   return (
     <Container fluid>
-      <Tabs defaultActiveKey="monthly" id="uncontrolled-tab-example">
-        <Tab eventKey="monthly" title="Monthly">
-          <SongTable
-            endpoint={Endpoint.TopTracks}
-            options={{
-              limit: 50,
-              time_range: 'short_term',
-            }}
-          />
-        </Tab>
+      <Tabs defaultActiveKey="Monthly" id="uncontrolled-tab-example">
+        {tabs.map((tab, index) => (
+          <Tab eventKey={tab.title} title={tab.title} key={tab.title + index}>
+            <Container fluid className="pt-3">
+              <SongTable
+                endpoint={Endpoint.TopTracks}
+                options={{
+                  limit: 50,
+                  time_range: tab.range + '_term',
+                }}
+              />
+            </Container>
+          </Tab>
+        ))}
+
         {/* <Tab eventKey="recently" title="Recently">
           <h2>Recently played</h2>
           <SongTable
@@ -25,7 +45,7 @@ export const Tracks: React.FC = () => {
             }}
           />
         </Tab> */}
-        <Tab eventKey="yearly" title="Yearly">
+        {/* <Tab eventKey="yearly" title="Yearly">
           <SongTable
             endpoint={Endpoint.TopTracks}
             options={{
@@ -42,7 +62,7 @@ export const Tracks: React.FC = () => {
               time_range: 'long_term',
             }}
           />
-        </Tab>
+        </Tab> */}
       </Tabs>
     </Container>
   )

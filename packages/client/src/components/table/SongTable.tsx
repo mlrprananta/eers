@@ -19,6 +19,11 @@ export const SongTable: React.FC<Props> = (props) => {
 
   return (
     <GenericTable>
+      {/* <thead>
+        <th></th>
+        <th>Track</th>
+        <th>Artist</th>
+      </thead> */}
       <Body>
         {tracks.items.map((track, index) => (
           <Row key={track.name + index}>
