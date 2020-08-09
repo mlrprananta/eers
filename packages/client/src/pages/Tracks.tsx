@@ -24,15 +24,13 @@ export const Tracks: React.FC = () => {
       <Tabs defaultActiveKey="Monthly" id="uncontrolled-tab-example">
         {tabs.map((tab, index) => (
           <Tab eventKey={tab.title} title={tab.title} key={tab.title + index}>
-            <Container fluid className="pt-3">
-              <SongTable
-                endpoint={Endpoint.TopTracks}
-                options={{
-                  limit: 50,
-                  time_range: tab.range + '_term',
-                }}
-              />
-            </Container>
+            <SongTable
+              endpoint={Endpoint.TopTracks}
+              options={{
+                limit: 50,
+                time_range: tab.range + '_term',
+              }}
+            />
           </Tab>
         ))}
 

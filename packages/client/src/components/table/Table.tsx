@@ -8,5 +8,9 @@ interface Props<T> {
 export function GenericTable<T>(
   props: PropsWithChildren<Props<T>>,
 ): ReactElement<PropsWithChildren<Props<T>>> {
-  return <BTable>{props.children}</BTable>
+  return (
+    <BTable responsive="sm" borderless>
+      {props.children}
+    </BTable>
+  )
 }
