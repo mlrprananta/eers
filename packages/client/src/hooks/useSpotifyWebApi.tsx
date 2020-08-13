@@ -17,7 +17,7 @@ export function useApiRequest<T>(url: string, options?: Options) {
   const { clear } = useAuth()
 
   useEffect(() => {
-    if (state.authenticated) {
+    if (state.token) {
       axios
         .get(WEB_API_URI + url, {
           params: _options,

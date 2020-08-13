@@ -26,21 +26,16 @@ export function useAuth() {
     dispatch({ type: 'RESET' })
   }, [dispatch])
 
-  const logout = useCallback(() => {
+  const logout = useCallback(async () => {
     history.push('/login')
+    await axios.delete('/api/token')
     clear()
   }, [clear, history])
 
-  const refresh = useCallback(() => {
-    axios
-      .post(TOKEN_URI)
-      .then((response) => {
-        dispatch({ type: 'AUTHENTICATE', payload: response.data.access_token })
-      })
-      .catch(() => {
-        logout()
-      })
-  }, [dispatch, logout])
+  const refresh = useCallback(async () => {
+    const response = await axios.post(TOKEN_URI)
+    dispatch({ type: 'AUTHENTICATE', payload: response.data.access_token })
+  }, [dispatch])
 
   const login = useCallback(() => {
     axios

@@ -4,9 +4,11 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
 
-import router from './components/index'
-import authorize from './components/authorize'
-import token from './components/token'
+import router from './routes/index'
+import authorize from './routes/authorize'
+import token from './routes/token'
+
+import user from './user/userController'
 
 const app = express()
 dotenv.config()
@@ -19,6 +21,7 @@ app.use(express.static(dist))
     .use(cookieParser())
     .use('/api/authorize', authorize)
     .use('/api/token', token)
+    .use(user)
     .use('/*', router)
 
 export default app

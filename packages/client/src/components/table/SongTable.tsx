@@ -1,23 +1,23 @@
 import React from 'react'
 import { Track } from '../../data/types'
-import { useApiRequest } from '../../hooks/useSpotifyWebApi'
-import { GenericTable, Column, Body, Row } from '.'
+import { GenericTable, Body, Row } from '.'
 import { AlbumArtColumn } from './AlbumArtColumn'
-import { ArtistColumn } from './ArtistColumn'
-import { Endpoint } from '../../api/endpoints'
 import { ArtistSongColumn } from './ArtistSongColumn'
 import { Container, Row as BRow } from 'react-bootstrap'
 
 interface Props {
-  endpoint: Endpoint.RecentlyPlayed | Endpoint.TopTracks
-  options: object
+  // endpoint: Endpoint.RecentlyPlayed | Endpoint.TopTracks
+  // options: object
+  tracks: Track[]
 }
 
 export const SongTable: React.FC<Props> = (props) => {
-  const tracks = useApiRequest<{ items: Track[] }>(
-    props.endpoint,
-    props.options,
-  ) || { items: [] }
+  const tracks = props.tracks
+
+  // const tracks = useApiRequest<{ items: Track[] }>(
+  //   props.endpoint,
+  //   props.options,
+  // ) || { items: [] }
 
   return (
     <Container fluid>
@@ -29,7 +29,7 @@ export const SongTable: React.FC<Props> = (props) => {
         <th>Artist</th>
       </thead> */}
           <Body>
-            {tracks.items.map((track, index) => (
+            {tracks.map((track, index) => (
               <Row key={track.name + index}>
                 <td>{index + 1}</td>
                 <AlbumArtColumn track={track} />

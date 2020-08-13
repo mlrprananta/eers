@@ -1,5 +1,6 @@
-import express, { response } from 'express'
+import express from 'express'
 import axios, { AxiosError } from 'axios'
+import { createUserProfile } from '../user/userService'
 
 const router = express.Router()
 
@@ -27,6 +28,7 @@ router.get('/', (req, res) => {
         },
     })
         .then((response) => {
+            createUserProfile('Bearer ' + response.data.access_token)
             res.cookie('vt', response.data.refresh_token, {
                 httpOnly: true,
                 path: '/api/token',
@@ -41,13 +43,25 @@ router.get('/', (req, res) => {
 })
 
 /**
+ * Clear cookie on logout
+ */
+router.delete('/', (req, res) => {
+    res.clearCookie('vt', {
+        httpOnly: true,
+        path: '/api/token',
+    })
+    res.status(200).end()
+})
+
+/**
  * Refresh route
  */
 router.post('/', (req, res) => {
     const token = req.cookies.vt
 
     if (!token) {
-        res.status(400).send('Invalid refresh token')
+        console.error('Invalid refresh token.')
+        res.status(400).end()
     }
 
     axios({

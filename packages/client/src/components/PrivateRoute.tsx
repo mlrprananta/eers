@@ -8,17 +8,21 @@ type Props = Required<Pick<RouteProps, 'component'>> & RouteProps
 
 const PrivateRoute: React.FC<Props> = ({ component: Component, ...rest }) => {
   const state = useAuthState()
-  const { refresh } = useAuth()
+  const { refresh, logout } = useAuth()
 
   useEffect(() => {
-    if (!state.authenticated) refresh()
-  }, [state, refresh])
+    if (!state.token) {
+      refresh().catch((error) => {
+        logout()
+      })
+    }
+  }, [state, refresh, logout])
 
   return (
     <Route
       {...rest}
       render={(props) =>
-        state.authenticated ? (
+        state.token ? (
           <Component {...props} />
         ) : (
           <div className="parent full">

@@ -12,10 +12,10 @@ export const MyNavbar: React.FC = (props) => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link as={Link} to="home">
+          <Nav.Link as={Link} to="/home">
             Home
           </Nav.Link>
-          <Nav.Link as={Link} to="tracks">
+          <Nav.Link as={Link} to="/tracks">
             Tracks
           </Nav.Link>
         </Nav>

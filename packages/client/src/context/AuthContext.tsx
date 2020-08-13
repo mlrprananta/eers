@@ -3,7 +3,7 @@ import React, { useReducer } from 'react'
 type Action = { type: 'AUTHENTICATE'; payload: string } | { type: 'RESET' }
 type Dispatch = (action: Action) => void
 type State = {
-  authenticated: boolean
+  // authenticated: boolean
   token: string
 }
 
@@ -14,12 +14,12 @@ const reducer = (state: State, action: Action) => {
   switch (action.type) {
     case 'AUTHENTICATE':
       return {
-        authenticated: true,
+        // authenticated: true,
         token: action.payload,
       }
     case 'RESET':
       return {
-        authenticated: false,
+        // authenticated: false,
         token: '',
       }
     default:
@@ -30,7 +30,7 @@ const reducer = (state: State, action: Action) => {
 const AuthProvider: React.FC = (props) => {
   // const [fetching, setFetching] = useState(false)
   const [state, dispatch] = useReducer(reducer, {
-    authenticated: false,
+    // authenticated: false,
     token: '',
   })
 

@@ -15,7 +15,7 @@ export const Callback: React.FC = (props) => {
 
   return (
     <div className="parent full">
-      {state.authenticated ? (
+      {state.token ? (
         <Redirect to="/home" />
       ) : (
         <Spinner animation="border" variant="primary" />
