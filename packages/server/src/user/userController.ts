@@ -20,7 +20,7 @@ router.get(ROUTE_URI, async (req, res, next) => {
  */
 router.get(ROUTE_URI + '/:id', async (req, res, next) => {
     try {
-        const id = parseInt(req.params.id)
+        const id = req.params.id
         const user = await service.getUserProfile(id)
         res.send(User.toDTO(user))
     } catch (error) {

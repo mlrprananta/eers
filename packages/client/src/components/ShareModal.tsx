@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import { Modal, Button, ModalProps, Form, Col } from 'react-bootstrap'
 
 interface Props extends ModalProps {
-  id: number
+  id: string
 }
 
 export const ShareModal: React.FC<Props> = ({ id, ...props }) => {

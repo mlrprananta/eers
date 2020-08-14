@@ -1,27 +1,27 @@
 import { Track, Artist, TopObject } from '../spotify/spotifyTypes'
 
 type UserDTO = {
-    id: number
+    id: string
     name: string
     tracks: Track[]
     artists: Artist[]
 }
 
 class User {
-    id: number
+    id: string
     name: string
     top_tracks: TopObject<Track>
     top_artists: TopObject<Artist>
 
-    constructor(id: number, name: string)
+    constructor(id: string, name: string)
     constructor(
-        id: number,
+        id: string,
         name: string,
         top_tracks: TopObject<Track>,
         top_artists: TopObject<Artist>,
     )
     constructor(
-        id?: number,
+        id?: string,
         name?: string,
         top_tracks?: TopObject<Track>,
         top_artists?: TopObject<Artist>,

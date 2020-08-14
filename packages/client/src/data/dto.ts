@@ -1,7 +1,7 @@
 import { Track, Artist } from './types'
 
 export type UserDTO = {
-  id: number
+  id: string
   name: string
   tracks: Track[]
   artists: Artist[]

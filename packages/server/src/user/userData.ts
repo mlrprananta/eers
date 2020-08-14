@@ -16,7 +16,7 @@ export function createUser(user: User): Promise<User[]> {
     )
 }
 
-export function readUser(id: number): Promise<User[]> {
+export function readUser(id: string): Promise<User[]> {
     return query<User>('SELECT * FROM users WHERE id = $1', [id])
 }
 

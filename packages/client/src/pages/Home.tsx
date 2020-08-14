@@ -14,7 +14,7 @@ export const Home: React.FC = () => {
   const [profile, setProfile] = useState<UserDTO>()
   const [show, setShow] = useState(false)
 
-  const share = async (id: number) => {
+  const share = async (id: string) => {
     try {
       // if (navigator.share !== undefined) {
       await navigator.share({
