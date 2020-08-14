@@ -20,7 +20,7 @@ export const Home: React.FC = () => {
       await navigator.share({
         title: 'eers.herokuapp.com',
         text: "What I've been listening.",
-        url: 'eers.herokuapp.com/user/' + id,
+        url: 'user/' + id,
       })
       // }
     } catch (error) {}
