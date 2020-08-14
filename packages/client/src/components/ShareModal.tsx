@@ -12,8 +12,6 @@ export const ShareModal: React.FC<Props> = ({ id, ...props }) => {
   function handleClick() {
     ref.current?.select()
     document.execCommand('copy')
-    // This is just personal preference.
-    // I prefer to not show the whole text area selected.
     setCopied(true)
   }
 
@@ -39,11 +37,6 @@ export const ShareModal: React.FC<Props> = ({ id, ...props }) => {
             </Col>
           </Form.Row>
         </Form>
-        {/* <input
-          ref={ref}
-          readOnly={true}
-          value={'eers.herokuapp.com/user/' + id}
-        /> */}
       </Modal.Body>
     </Modal>
   )

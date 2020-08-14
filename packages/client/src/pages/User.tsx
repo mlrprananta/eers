@@ -7,6 +7,7 @@ import { ArtistList } from '../components/ArtistList'
 import { SongTable } from '../components/table/SongTable'
 import { UserDTO } from '../data/dto'
 import { Loading } from './Loading'
+import { ShareNavbar } from '../components/ShareNavbar'
 
 type Props = {
   id: string
@@ -31,6 +32,7 @@ export const User: React.FC<RouteComponentProps<Props>> = (props) => {
 
   return (
     <>
+      <ShareNavbar />
       {profile ? (
         <Container fluid>
           <h1>{profile.name}</h1>
