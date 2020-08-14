@@ -60,7 +60,9 @@ export const Home: React.FC = () => {
                 <Button
                   variant="primary"
                   onClick={() =>
-                    navigator.share !== undefined ? share() : setShow(true)
+                    navigator.share !== undefined
+                      ? share(profile.id)
+                      : setShow(true)
                   }
                 >
                   Share
