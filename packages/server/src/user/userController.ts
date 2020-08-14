@@ -35,7 +35,6 @@ router.get(ROUTE_URI + '/:id', async (req, res, next) => {
 router.put(ROUTE_URI, async (req, res, next) => {
     try {
         const authHeader = req.headers.authorization || ''
-        console.log(authHeader)
         const user = await service.updateUserProfile(authHeader)
         res.status(200).send(User.toDTO(user))
     } catch (error) {
