@@ -1,6 +1,14 @@
+export type ExternalURL = {
+  spotify: string
+  [key: string]: string
+}
+
 export type Artist = {
   id: string
   name: string
+  genres: string[]
+  uri: string
+  external_urls: ExternalURL
   images: { url: string }[]
 }
 

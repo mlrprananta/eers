@@ -12,17 +12,18 @@ export const ArtistList: React.FC<Props> = (props) => {
   return (
     <div className="ram">
       {artists.map((item, index) => {
-        const image = item.images[0] ? item.images[0].url : ''
-        const artist = item.name
+        const image = item.images[1] ? item.images[1].url : ''
+        const name = item.name
         return (
           <div key={item.id} className="ram-container">
-            <img src={image} alt={artist} className="ram-img"></img>
+            <a href={item.uri}>
+              <img src={image} alt={name} className="ram-img" />
+            </a>
+
             {/* <div className="font-weight-normal artist-counter parent">
                 {index + 1}
               </div> */}
-            <div className="font-weight-light artist-name truncate">
-              {artist}
-            </div>
+            <div className="font-weight-light artist-name truncate">{name}</div>
           </div>
         )
       })}
