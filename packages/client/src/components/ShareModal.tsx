@@ -27,7 +27,7 @@ export const ShareModal: React.FC<Props> = ({ id, ...props }) => {
               <Form.Control
                 ref={ref}
                 readOnly
-                value={'eers.herokuapp.com/user/' + id}
+                value={'https://eers.herokuapp.com/user/' + id}
               ></Form.Control>
             </Col>
             <Col className="col-auto">
