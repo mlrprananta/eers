@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useRef } from 'react'
 import { Image } from 'react-bootstrap'
 import { Artist } from '../data/types'
 
@@ -6,24 +6,24 @@ type Props = {
   artists: Artist[]
 }
 
-//TODO Fix data types
 export const ArtistList: React.FC<Props> = (props) => {
-  // const artists = useApiRequest<{ items: Artist[] }>(Endpoint.TopArtists, {
-  //   limit: 10,
-  //   time_range: 'medium_term',
-  // })?.items
   const artists = props.artists
 
   return (
     <Fragment>
       <div className="ram">
-        {artists.map((item) => {
+        {artists.map((item, index) => {
           const image = item.images[0] ? item.images[0].url : ''
           const artist = item.name
           return (
-            <div key={item.id}>
-              <Image src={image} fluid roundedCircle />
-              <p className="text-center font-weight-light">{artist}</p>
+            <div key={item.id} className="ram-container">
+              <img src={image} alt={artist} className="ram-img"></img>
+              <div className="font-weight-normal artist-counter parent">
+                {index + 1}
+              </div>
+              <div className="font-weight-light artist-name truncate">
+                {artist}
+              </div>
             </div>
           )
         })}

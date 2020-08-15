@@ -62,6 +62,7 @@ router.post('/', (req, res) => {
     if (!token) {
         console.error('Invalid refresh token.')
         res.status(400).end()
+        return
     }
 
     axios({
