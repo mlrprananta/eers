@@ -16,7 +16,7 @@ export const ArtistList: React.FC<Props> = (props) => {
         const name = item.name
         return (
           <div key={item.id} className="ram-container">
-            <a href={item.uri}>
+            <a href={item.external_urls.spotify}>
               <img src={image} alt={name} className="ram-img" />
             </a>
 

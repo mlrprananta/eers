@@ -33,6 +33,7 @@ export type Track = {
   linked_from: Track
   name: string
   uri: string
+  external_urls: ExternalURL
 }
 
 export type Playlist = {

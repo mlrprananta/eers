@@ -12,10 +12,16 @@ export function ArtistSongColumn(
 
   return (
     <td>
-      <div className="font-weight-bold">{props.data.name}</div>
+      <div>
+        <a className="font-weight-bold" href={props.data.external_urls.spotify}>
+          {props.data.name}
+        </a>
+      </div>
+
       {artists.map((artist, index) => (
         <span key={artist.name + index}>
-          {artist.name + (index !== props.data.artists.length - 1 ? ', ' : '')}
+          <a href={artist.external_urls.spotify}>{artist.name}</a>
+          {index !== props.data.artists.length - 1 ? ', ' : ''}
         </span>
       ))}
     </td>
