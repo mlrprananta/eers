@@ -42,8 +42,9 @@ body {
 
 .ram {
   display: grid;
-  grid-gap: 0.5rem;
+  grid-gap: 0.25rem;
   grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  grid-auto-rows: minmax(10rem, 1fr);
   padding-bottom: 2rem;
 }
 
@@ -57,7 +58,12 @@ body {
   width: 100%;
   height: 100%;
   position: relative;
-  /* display: block; */
+}
+
+.ram-filler {
+  width: 32em;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* .ram-container::after {
