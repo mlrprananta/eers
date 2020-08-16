@@ -12,11 +12,16 @@ export async function createUserProfile(authHeader: string): Promise<void> {
 export async function updateUserProfile(authHeader: string): Promise<User> {
     const profile = await spotify.getProfile(authHeader)
     const id = profile.id
+    console.log(id)
     const user = (await model.readUser(id))[0]
+    console.log(user)
     const tracks = await spotify.getTopTracks(authHeader, 50, 'short_term')
     const artists = await spotify.getTopArtists(authHeader, 12, 'medium_term')
+    console.log(tracks)
+    console.log(artists)
     user.top_artists = artists
     user.top_tracks = tracks
+    console.log(user)
     return (await model.updateUser(user))[0]
 }
 
