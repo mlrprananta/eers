@@ -7,6 +7,7 @@ import { useAuthState } from '../context/AuthContext'
 import { UserDTO } from '../data/dto'
 import { Loading } from './Loading'
 import { ShareModal } from '../components/ShareModal'
+import { ArtistListExtended } from '../components/ArtistListExtended'
 
 export const Home: React.FC = () => {
   // const user = useApiRequest<User>('/me')
@@ -70,7 +71,8 @@ export const Home: React.FC = () => {
               </h1>
             </span>
             <h2>Your favorite artists</h2>
-            <ArtistList artists={profile.artists}></ArtistList>
+            {/* <ArtistList artists={profile.artists}></ArtistList> */}
+            <ArtistListExtended artists={profile.artists}></ArtistListExtended>
             <h2>Your recent tracks</h2>
             <SongTable tracks={profile.tracks} />
           </Container>

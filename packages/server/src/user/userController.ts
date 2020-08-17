@@ -21,7 +21,9 @@ router.get(ROUTE_URI, async (req, res, next) => {
 router.get(ROUTE_URI + '/:id', async (req, res, next) => {
     try {
         const id = req.params.id
-        const user = await service.getUserProfile(id)
+        const user = await service.getUserProfile(id).catch((error) => {
+            throw error
+        })
         res.send(User.toDTO(user))
     } catch (error) {
         res.status(400)
