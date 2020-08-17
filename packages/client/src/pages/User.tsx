@@ -8,6 +8,7 @@ import { SongTable } from '../components/table/SongTable'
 import { UserDTO } from '../data/dto'
 import { Loading } from './Loading'
 import { ShareNavbar } from '../components/ShareNavbar'
+import { ArtistListExtended } from '../components/ArtistListExtended'
 
 type Props = {
   id: string
@@ -37,7 +38,7 @@ export const User: React.FC<RouteComponentProps<Props>> = (props) => {
         <Container fluid>
           <h1>{profile.name}</h1>
           <h2>Favorite artists</h2>
-          <ArtistList artists={profile.artists}></ArtistList>
+          <ArtistListExtended artists={profile.artists}></ArtistListExtended>
           <h2>Recent tracks</h2>
           <SongTable tracks={profile.tracks} />
         </Container>
