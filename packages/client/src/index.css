@@ -19,7 +19,7 @@ body {
 
 #root,
 #root > div {
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .full {
@@ -29,10 +29,6 @@ body {
 .parent {
   display: grid;
   place-items: center;
-}
-
-.center-text {
-  text-align: center;
 }
 
 .artist-art {
@@ -101,14 +97,4 @@ body {
   background-color: white;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-}
-
-.truncate {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.item {
-  position: relative;
 }

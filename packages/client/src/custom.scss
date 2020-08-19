@@ -1,30 +1,32 @@
-/*! Themestr.app `Blue Voltage` Bootstrap 4.3.1 theme */
-@import url(https://fonts.googleapis.com/css?family=Nunito:200,300,400,700);
-$font-family-base:Nunito;
-@import url(https://fonts.googleapis.com/css?family=Nunito:200,300,400,700);
-$headings-font-family: Nunito;
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:300,400,700');
+@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
+@import url('https://themesguide.github.io/top-hat/dist/electro/theme.min.css');
+@import url('https://use.fontawesome.com/releases/v5.14.0/css/all.css');
 
-$enable-grid-classes: false;
-$primary: #1633ff;
-$secondary: #a0b7bc;
-$success: #1633ff;
-$danger: #00f900;
-$info: #7ebcfa;
-$warning: #00f900;
-$light: #eef0f2;
-$dark: #000633;
+body {
+  font-family: 'Work Sans', 'Arial', Sans-Serif;
+}
 
-/*! Import Bootstrap 4 variables */
-@import '~bootstrap/scss/_functions.scss';
-@import '~bootstrap/scss/_variables.scss';
+/* this template */
+.min-100 {
+  min-height: 100vh;
+}
 
-$body-bg: #ffffff;
-$display1-weight: 600;
-$display2-weight: 600;
-$display3-weight: 600;
-$btn-border-radius: 1.3rem;
-$btn-border-radius-lg: 1.6rem;
-$btn-border-radius-sm: 0.8rem;
-@import '~bootstrap/scss/bootstrap.scss';
+#sidemenu {
+  z-index: 1010;
+}
 
-// Add SASS theme customizations here..
+/* only show subitems when parent is active*/
+#sidemenu .nav-item .nav-link.active + .nav .nav-item {
+  display: list-item;
+}
+#sidemenu .nav-item .nav-item {
+  display: none;
+}
+
+.anchor {
+  display: block;
+  height: 70px;
+  margin-top: -70px;
+  visibility: hidden;
+}

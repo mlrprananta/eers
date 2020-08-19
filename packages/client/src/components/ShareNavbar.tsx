@@ -13,13 +13,14 @@ export const ShareNavbar: React.FC = () => {
         <Nav className="ml-auto">
           <Button as={Link} to="/" variant="primary">
             <span>Connect </span>
-            <img
+            <i className="fas fa-sign-in-alt"></i>
+            {/* <img
               src="/Spotify_Icon_CMYK_White.png"
               height={22}
               width={22}
               alt="logo"
               style={{ verticalAlign: 'text-bottom' }}
-            />
+            /> */}
           </Button>
         </Nav>
       </Navbar.Collapse>

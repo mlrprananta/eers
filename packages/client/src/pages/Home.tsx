@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Button } from 'react-bootstrap'
-import { ArtistList } from '../components/ArtistList'
+import { Card } from 'react-bootstrap'
 import { SongTable } from '../components/table/SongTable'
 import axios from 'axios'
 import { useAuthState } from '../context/AuthContext'
@@ -8,6 +7,9 @@ import { UserDTO } from '../data/dto'
 import { Loading } from './Loading'
 import { ShareModal } from '../components/ShareModal'
 import { ArtistListExtended } from '../components/ArtistListExtended'
+import styles from './Page.module.css'
+import { ProfileSummary } from '../components/ProfileSummary'
+import { SongList } from '../components/SongList'
 
 export const Home: React.FC = () => {
   // const user = useApiRequest<User>('/me')
@@ -17,14 +19,17 @@ export const Home: React.FC = () => {
 
   const share = async (id: string) => {
     try {
-      // if (navigator.share !== undefined) {
       await navigator.share({
         title: 'eers.herokuapp.com',
         text: "What I've been listening.",
         url: 'user/' + id,
       })
-      // }
     } catch (error) {}
+  }
+
+  const toggle = () => {
+    console.log('toggled')
+    setShow(true)
   }
 
   useEffect(() => {
@@ -53,35 +58,51 @@ export const Home: React.FC = () => {
   return (
     <>
       {profile ? (
-        <>
-          <Container fluid>
-            <span>
-              <h1>
-                {'Welcome ' + profile.name + ' '}
-                <Button
-                  variant="primary"
-                  onClick={() =>
-                    navigator.share !== undefined
-                      ? share(profile.id)
-                      : setShow(true)
-                  }
-                >
-                  Share
-                </Button>
-              </h1>
-            </span>
-            <h2>Your favorite artists</h2>
-            {/* <ArtistList artists={profile.artists}></ArtistList> */}
-            <ArtistListExtended artists={profile.artists}></ArtistListExtended>
-            <h2>Your recent tracks</h2>
-            <SongTable tracks={profile.tracks} />
-          </Container>
+        <div className={styles.page}>
+          <section>
+            <ProfileSummary
+              name={profile.name}
+              id={profile.id}
+              toggle={toggle}
+              share={share}
+            ></ProfileSummary>
+          </section>
+
+          <section>
+            <Card className="border-0 shadow-sm">
+              <Card.Body>
+                <h4 className="card-title">Your favorite artists</h4>
+                <ArtistListExtended
+                  artists={profile.artists}
+                ></ArtistListExtended>
+              </Card.Body>
+            </Card>
+          </section>
+
+          <section>
+            <Card className="border-0 shadow-sm">
+              <Card.Body>
+                <h4 className="card-title">Your recent tracks</h4>
+                <SongList tracks={profile.tracks} />
+              </Card.Body>
+            </Card>
+          </section>
+
+          <section>
+            <Card className="border-0 shadow-sm">
+              <Card.Body>
+                <h4 className="card-title">Your recent tracks</h4>
+                <SongTable tracks={profile.tracks} />
+              </Card.Body>
+            </Card>
+          </section>
+
           <ShareModal
             id={profile.id}
             show={show}
             onHide={() => setShow(false)}
           ></ShareModal>
-        </>
+        </div>
       ) : (
         <Loading />
       )}

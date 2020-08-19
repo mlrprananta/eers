@@ -1,6 +1,7 @@
 import React from 'react'
 import { Artist } from '../data/types'
-import styles from './ArtistList.module.css'
+import styles from './Grid.module.css'
+import { useMediaQuery } from 'react-responsive'
 
 type Props = {
   artists: Artist[]
@@ -8,39 +9,30 @@ type Props = {
 
 export const ArtistListExtended: React.FC<Props> = (props) => {
   const artists = props.artists
+  const isMobileDevice = useMediaQuery({ query: '(max-width: 992px)' })
 
   return (
-    <div className={styles.container}>
+    <div
+      className={styles['container' + (isMobileDevice ? '-horizontal' : '')]}
+    >
       {artists.map((item, index) => {
         const image = item.images[1] ? item.images[1].url : ''
         const name = item.name
         return (
-          <div
-            key={item.id}
-            className={styles.item}
-            style={{
-              marginBottom: '1rem',
-            }}
-          >
+          <div key={item.id} className={styles.item}>
             <div className={styles['img-container']}>
               <a href={item.external_urls.spotify}>
-                <img src={image} alt={name} className={styles.img} />
+                <img src={image} alt={name} className={styles['artist-img']} />
               </a>
             </div>
-
-            {/* <div className="font-weight-normal artist-counter parent">
-                {index + 1}
-              </div> */}
-            <div className={`${styles.label} font-weight-light text-truncate`}>
+            <div
+              className={`${styles.label} font-weight-normal text-truncate text-center`}
+            >
               {name}
             </div>
           </div>
         )
       })}
-      {/* <div className="ram-container">
-        <img src={'filler.png'} alt="" className="ram-img"></img>
-        <div className="ram-filler"></div>
-      </div> */}
     </div>
   )
 }

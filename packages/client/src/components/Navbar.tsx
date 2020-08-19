@@ -7,7 +7,7 @@ export const MyNavbar: React.FC = (props) => {
   const { logout } = useAuth()
 
   return (
-    <Navbar>
+    <Navbar variant="dark" className="bg-primary shadow-sm">
       <Navbar.Brand as={Link} to="/home">
         {'E&ERS'}
       </Navbar.Brand>
@@ -22,8 +22,9 @@ export const MyNavbar: React.FC = (props) => {
           </Nav.Link> */}
         </Nav>
         <Nav className="ml-auto">
-          <Button variant="outline-primary" onClick={() => logout()}>
-            Logout
+          <Button variant="secondary" onClick={() => logout()}>
+            {/* Logout */}
+            <i className="fas fa-sign-out-alt"></i>
           </Button>
         </Nav>
       </Navbar.Collapse>

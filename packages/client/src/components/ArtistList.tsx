@@ -1,5 +1,4 @@
-import React, { Fragment, useRef } from 'react'
-import { Image } from 'react-bootstrap'
+import React from 'react'
 import { Artist } from '../data/types'
 
 type Props = {
@@ -11,7 +10,7 @@ export const ArtistList: React.FC<Props> = (props) => {
 
   return (
     <div className="ram">
-      {artists.map((item, index) => {
+      {artists.map((item) => {
         const image = item.images[1] ? item.images[1].url : ''
         const name = item.name
         return (

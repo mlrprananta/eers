@@ -1,0 +1,57 @@
+.container {
+  display: grid;
+  grid-gap: 0.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  margin-bottom: 1rem;
+  /* padding-left: 1rem;
+  padding-right: 1rem; */
+}
+
+.negate-card-body-padding {
+  margin-left: -1.25rem;
+  margin-right: -1.25rem;
+}
+
+.container-horizontal {
+  composes: negate-card-body-padding;
+  padding-left: 1rem;
+  display: grid;
+  grid-gap: 1rem;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(10rem, 1fr);
+  overflow-x: scroll;
+}
+
+.item {
+  padding-bottom: 0.5rem;
+}
+
+.img-container {
+  width: 100%;
+  padding-bottom: 100%;
+  position: relative;
+}
+
+.artist-img {
+  composes: shadow from global;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  object-fit: cover;
+  border-radius: 50%;
+  /* box-shadow: 0 0px 6px rgba(0, 0, 0, 0.5); */
+}
+
+.album-img {
+  composes: shadow from global;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  object-fit: cover;
+  /* box-shadow: 0 0px 6px rgba(0, 0, 0, 0.5); */
+}
+
+.label {
+  width: 100%;
+  padding-top: 0.5rem;
+}
